@@ -54,7 +54,7 @@ export class CareersPage extends PageBase {
     }
 
     public async filterOpenPositionsBy(value: string): Promise<void> {
-        let filterValuesList: WebElement[] = await this.driver.findElements(this.filterValues);
+        let filterValuesList: WebElement[] = await this.waitUntilElementsAreLocated(this.filterValues);
 
         let filterValueElement: WebElement | undefined;
         for (const element of filterValuesList) {
@@ -116,7 +116,8 @@ export class CareersPage extends PageBase {
     public async getJobSummaryText(): Promise<string> {
         await this.checkClickedPositionNameNotNull();
         let clickedPosition: WebElement = await this.getPosition(this.clickedPositionName);
-        let jobDescription: string = await (await clickedPosition.findElement(By.css("div.inner-html-description")))
+        let jobDescription: string = await (await this.waitUntilChildElementIsDisplayed(
+            clickedPosition, By.css("div.inner-html-description")))
             .getText();
         return jobDescription.substring(0, jobDescription.indexOf("Overview")).trim();
     }
@@ -152,7 +153,7 @@ export class CareersPage extends PageBase {
     }
 
     private async getPosition(positionName: string): Promise<WebElement> {
-        let openPositionsArray: WebElement[] = await this.waitUntilElementsAreLocated(this.openPositions);
+        let openPositionsArray: WebElement[] = await this.waitUntilElementsAreLocatedAndDisplayed(this.openPositions);
         let position: WebElement | undefined;
 
         debugLogger.info("openPositionsArray length = " + openPositionsArray.length)
