@@ -1,7 +1,7 @@
-# Mitigram Assignment
+# Selenium-TypeScript based UI Automation Framework
 ## Introduction
-This repository contains the Selenium test scenarios to test the 
-Login flow of the Mitigram portal, the Careers page, and the Newsletter section.
+This repository contains the example Selenium test scenarios to test the 
+Login flow of the GitHub, and the Careers page.
 ## Supported Operating Systems
 * Windows
 * Linux
@@ -46,4 +46,4 @@ ex: `npx mocha src/test/careersPageTests.ts -g "Validate engineering positions f
 ##### View Test Results Report
 Open the file `testReports/testResults.html` in a web browser to view the HTML test results report.
 ##### View Test Logs
-Open the file `logs/mitigram-selenium-test.log` to view the outputs logged to the file.
+Open the file `logs/selenium-test.log` to view the outputs logged to the file.
