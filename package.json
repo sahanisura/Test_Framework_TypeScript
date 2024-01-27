@@ -1,0 +1,25 @@
+{
+  "name": "mitigram_assignment_typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "mocha src/test/*.ts --reporter mochawesome --reporter-options reportDir=testReports,reportFilename=testResults"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.3.11",
+    "@types/mocha": "^10.0.6",
+    "@types/selenium-webdriver": "^4.1.21",
+    "chai": "^5.0.0",
+    "mocha": "^10.2.0",
+    "mochawesome": "^7.1.3",
+    "selenium-webdriver": "^4.16.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3",
+    "winston": "^3.11.0"
+  }
+}
