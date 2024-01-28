@@ -22,15 +22,15 @@ export class CareersPage extends PageBase {
     }
 
     public async getHeadingText(): Promise<string> {
-        return (await this.waitUntilElementIsLocated(this.heading)).getText();
+        return (await this.waitUntilElementIsLocatedAndDisplayed(this.heading)).getText();
     }
 
     public async getParagraphText(): Promise<string> {
-        return (await this.waitUntilElementIsLocated(this.paragraph)).getText();
+        return (await this.waitUntilElementIsLocatedAndDisplayed(this.paragraph)).getText();
     }
 
     public async click0penPositionsButton(): Promise<void> {
-        await (await this.waitUntilElementIsLocated(this.openPositionsLnk)).click();
+        await (await this.waitUntilElementIsLocatedAndDisplayed(this.openPositionsLnk)).click();
     }
 
     public async clickLocationsFilter(): Promise<void> {
@@ -54,10 +54,10 @@ export class CareersPage extends PageBase {
     }
 
     public async filterOpenPositionsBy(value: string): Promise<void> {
-        let filterValuesList: WebElement[] = await this.waitUntilElementsAreLocated(this.filterValues);
+        let filterValuesArray: WebElement[] = await this.waitUntilElementsAreLocatedAndDisplayed(this.filterValues);
 
         let filterValueElement: WebElement | undefined;
-        for (const element of filterValuesList) {
+        for (const element of filterValuesArray) {
             let elementText = await element.getText();
             if (value === elementText.substring(0, elementText.indexOf("(") - 1)) {
                 filterValueElement = element;
@@ -82,7 +82,7 @@ export class CareersPage extends PageBase {
         reqId: string;
         location: string;
         categories: string}[]> {
-        let openPositionsList: WebElement[] =
+        let openPositionsArray: WebElement[] =
             await this.driver.findElements(this.openPositions);
 
         let visiblePositionsDetailsArray: {
@@ -91,7 +91,7 @@ export class CareersPage extends PageBase {
             location: string;
             categories: string} [] = [];
 
-        for (const element of openPositionsList) {
+        for (const element of openPositionsArray) {
             if (await element.isDisplayed()) {
                 visiblePositionsDetailsArray.push({
                     positionName: await element.findElement(By.className("job-title")).getText(),
@@ -126,7 +126,7 @@ export class CareersPage extends PageBase {
         await this.checkClickedPositionNameNotNull();
         let clickedPosition: WebElement = await this.getPosition(this.clickedPositionName);
         let readMoreWebElement: WebElement | undefined =
-            await this.waitUntilChildElementIsLocated(clickedPosition, By.linkText("Read More"));
+            await this.waitUntilChildElementIsDisplayed(clickedPosition, By.linkText("Read More"));
 
         if (readMoreWebElement !== undefined) {
             return readMoreWebElement.click();
@@ -173,6 +173,6 @@ export class CareersPage extends PageBase {
     }
 
     private async waitUntilFilteringIsCompleted(): Promise<void> {
-        await this.waitUntilElementIsLocated(this.searchResultsIndicator);
+        await this.waitUntilElementIsLocatedAndDisplayed(this.searchResultsIndicator);
     }
 }

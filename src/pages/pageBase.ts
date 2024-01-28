@@ -77,8 +77,8 @@ export class PageBase {
         return elements;
     }
 
-    protected async waitUntilElementsAreNotDisplayed(webElementList: WebElement[]): Promise<void> {
-        for (const webElement of webElementList) {
+    protected async waitUntilElementsAreNotDisplayed(webElementsArray: WebElement[]): Promise<void> {
+        for (const webElement of webElementsArray) {
             await this.driver.wait(until.elementIsNotVisible(webElement),
                 Constants.WAIT_TIMEOUT_IN_MILLISECONDS,
                 "Timed out after " + Constants.WAIT_TIMEOUT_IN_MILLISECONDS +

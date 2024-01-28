@@ -38,11 +38,11 @@ export class LoginPage extends PageBase {
     }
 
     public async getSignInButtonText(): Promise<string> {
-        return await this.driver.findElement(this.signInBtn).getAttribute("value");
+        return await (await this.waitUntilElementIsLocatedAndDisplayed(this.signInBtn)).getAttribute("value");
     }
 
     public async getForgetPasswordText(): Promise<string> {
-        return await this.driver.findElement(this.forgotPasswordLnk).getText();
+        return await (await this.waitUntilElementIsLocatedAndDisplayed(this.forgotPasswordLnk)).getText();
     }
 
     public async getSignInWithAPasskeyText(): Promise<string> {
@@ -50,24 +50,24 @@ export class LoginPage extends PageBase {
     }
 
     public async getCreateAnAccountLblText(): Promise<string> {
-        return await (await this.waitUntilElementIsLocated(this.createAnAccountLbl)).getText();
+        return await (await this.waitUntilElementIsLocatedAndDisplayed(this.createAnAccountLbl)).getText();
     }
 
     public async enterEmail(email: string): Promise<void> {
-        await (await this.waitUntilElementIsLocated(this.usernameOrEmailAddressTxt))
+        await (await this.waitUntilElementIsLocatedAndDisplayed(this.usernameOrEmailAddressTxt))
             .sendKeys(email);
     }
 
     public async enterPassword(password: string): Promise<void> {
-        await (await this.waitUntilElementIsLocated(this.passwordTxt))
+        await (await this.waitUntilElementIsLocatedAndDisplayed(this.passwordTxt))
             .sendKeys(password);
     }
 
     public async clickLoginButton(): Promise<void> {
-        await (await this.waitUntilElementIsLocated(this.signInBtn)).click();
+        await (await this.waitUntilElementIsLocatedAndDisplayed(this.signInBtn)).click();
     }
 
     public async getErrorMessage(): Promise<string> {
-        return (await this.driver.findElement(this.errorLbl)).getText();
+        return await (await this.waitUntilElementIsLocatedAndDisplayed(this.errorLbl)).getText();
     }
 }

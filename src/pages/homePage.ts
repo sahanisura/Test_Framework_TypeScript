@@ -49,7 +49,7 @@ export class HomePage extends PageBase {
     }
 
     public async clickProfileButton(): Promise<void> {
-        await (await this.driver.findElement(this.profileBtn)).click();
+        await (await this.waitUntilElementIsLocatedAndDisplayed(this.profileBtn)).click();
     }
 
     public async clickSignOutButton(): Promise<void> {
@@ -67,7 +67,7 @@ export class HomePage extends PageBase {
     }
 
     public async clickSignOutFromAllAccountsButton(): Promise<void> {
-        await (await this.waitUntilElementIsLocated(this.signOutFromAllAccountsBtn)).click();
+        await (await this.waitUntilElementIsLocatedAndDisplayed(this.signOutFromAllAccountsBtn)).click();
     }
 
     //Other home page actions should be added here

@@ -47,7 +47,7 @@ export class CareersPageSteps extends StepBase {
         await this.careersPage.filterOpenPositionsBy(value);
     }
 
-    public async validateFilteredPositions(expectedPositionsDetailList: {
+    public async validateFilteredPositions(expectedPositionsDetailArray: {
         positionIndex: string;
         positionName: string;
         reqId: string;
@@ -61,7 +61,7 @@ export class CareersPageSteps extends StepBase {
             categories: string}[]
             = await this.careersPage.getVisiblePositionsDetails();
 
-        for (const expectedPositionDetail of expectedPositionsDetailList) {
+        for (const expectedPositionDetail of expectedPositionsDetailArray) {
             let index: number = parseInt(expectedPositionDetail.positionIndex);
             let actualPositionDetailsMap = visiblePositionsDetails[index];
 
